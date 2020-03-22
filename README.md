@@ -1,7 +1,7 @@
 # Metaheuristics for Combinatorial Optimization
 > **Pontifícia Universidade Católica - PUC.RIO**
 
-Introductory course on Metaheuristics for Graduate Course on Computer Science 2020.1
+Graduate course on Metaheuristics on Computer Science 2020.1
 
 ## Sylabus
 

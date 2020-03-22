@@ -9,7 +9,8 @@ Introductory course on Metaheuristics for Graduate Course on Computer Science 20
 | ---------- | 
 | Simulated Annealing (SA) | 
 | Genetic Algorithms (GA) |
-| Ant Colony Optimization (ACO) | 
+| Ant Colony Optimization (ACO) |
+| Machine Learning Applications|
 
 ## Bibliography
 

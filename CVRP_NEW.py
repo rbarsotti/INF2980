@@ -45,22 +45,23 @@ def closestPossibleNode(node,l,capacity_i):
 				node_min = i
 	return node_min
 
-def genSolution(depot,request_bank,total_demand,capacity):
+def genSolution():
 	routes = []
 	total_demand = sumDemand(l)
 	c = 0
 	while c < total_demand:
 		capacity_i = capacity
-		route_i = []
-		node_i = request_bank[0]
+		node_i = l[0]
+		route_i = [node_i]
 		while True:
-			next_node = closestPossibleNode(node_i,request_bank,capacity_i)
+			next_node = closestPossibleNode(node_i,l,capacity_i)
 			if next_node != 0:
 				route_i.append(next_node)
 				node_i = next_node
 				capacity_i -= next_node[3]
 				c += next_node[3]
 			else:
+				route_i.append(l[0])
 				break
 		routes.append(route_i)
 	return routes
@@ -114,12 +115,22 @@ def randomRemoval(routes):
 def worstRemoval(routes):
 	q = random.randint(int(len(routes)*0.1))
 	for i in range(q):
-		route_i = random.randint(len(routes)-1)
+		route_index = random.randint(len(routes)-1)
+		route_i = routes[route_index]
 		request_index = worstCost(route_i)
 		request_bank.append(route_i[request_index])
 		route_i.remove(route_i[request_index])
-		return routes
+	return routes
 
+def clusterRemoval(routes):
+	q = random.randint(int(len(routes)*0.1))
+	for i in range(q):
+		route_index = random.randint(len(routes)-1)
+		route_i = routes[route_index]
+		for j in route_i:
+			request_bank.append(j)
+		routes.remove(route_i)
+	return routes
 
 
 

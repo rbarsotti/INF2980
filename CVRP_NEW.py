@@ -37,10 +37,12 @@ def sumDemand(l):
 def closestPossibleNode(node,l,capacity_i):
 	dist_min = 10**3
 	node_min = 0
-	for i in l:
-		if i[0] != node[0]:
-			dist_i = d(node,i)
-			if dist_i < dist_min and i[3] < capacity_i:
+	for i in range(len(l)):
+		node_id = l[i][0]
+		node_demand = l[i][3]
+		if node_id != node[0] and node_demand < capacity_i:
+			dist_i = d(node,l[i])
+			if dist_i < dist_min:
 				dist_min = dist_i
 				node_min = i
 	return node_min
@@ -93,7 +95,9 @@ def worstCost(route):
 	d = d(route[1],route[0])
 	index = 1  
 	for i in range(len(route)-1):
-		if d(route[i+1],route[i]) >= d:
+		d_i = d(route[i+1],route[i])
+		if d_i >= d:
+			d = d_i 
 			index = i
 	return index
 
@@ -101,7 +105,7 @@ def worstCost(route):
 # Destroy Heuristics #
 ######################
 
-destroy_heuristics = [randomRemoval]
+destroy_heuristics = [randomRemoval,worstRemoval,clusterRemoval]
 
 def randomRemoval(routes):
 	q = random.randint(int(len(routes)*0.1))
